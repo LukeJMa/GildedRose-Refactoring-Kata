@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace csharp
 {
     [TestFixture]
-    public class ApprovalTest
+    public class IntegrationTests
     {
         [Test]
         public void ThirtyDays()
