@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace csharp
 {
     public class GildedRose
     {
         IList<Item> Items;
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
@@ -14,76 +16,108 @@ namespace csharp
         {
             foreach (var item in Items)
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                switch (item.Name)
                 {
-                    if (item.Quality > 0)
+                    case "Sulfuras, Hand of Ragnaros":
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
+                        SulfurasUpdater(item);
+                        break;
                     }
-                }
-                else
-                {
-                    if (item.Quality < 50)
+
+                    case "Aged Brie":
                     {
-                        item.Quality = item.Quality + 1;
-
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.SellIn < 11)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
-
-                            if (item.SellIn < 6)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
-                        }
+                        AgedBrieUpdater(item);
+                        break;
                     }
-                }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    item.SellIn = item.SellIn - 1;
-                }
-
-                if (item.SellIn < 0)
-                {
-                    if (item.Name != "Aged Brie")
+                    case "Backstage passes to a TAFKAL80ETC concert":
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (item.Quality > 0)
-                            {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    item.Quality = item.Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            item.Quality = item.Quality - item.Quality;
-                        }
+                        BackstagePassUpdater(item);
+                        break;
                     }
-                    else
+
+                    default:
                     {
-                        if (item.Quality < 50)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
+                        DefaultItemUpdater(item);
+                        break;
                     }
                 }
             }
+        }
+
+        public void AgedBrieUpdater(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+
+
+            }
+
+            item.SellIn = item.SellIn - 1;
+
+            if (item.SellIn < 0 && item.Quality < 50)
+            {
+
+                item.Quality = item.Quality + 1;
+
+            }
+
+
+        }
+
+        public void BackstagePassUpdater(Item item)
+        {
+            if (item.Quality < 50)
+            {
+                item.Quality = item.Quality + 1;
+
+                if (item.SellIn < 11 && item.Quality < 50)
+                {
+                    item.Quality = item.Quality + 1;
+
+                }
+
+                if (item.SellIn < 6 && item.Quality < 50)
+                {
+                    item.Quality = item.Quality + 1;
+
+                }
+            }
+
+            item.SellIn = item.SellIn - 1;
+
+            if (item.SellIn < 0)
+            {
+                item.Quality = item.Quality - item.Quality;
+            }
+
+        }
+
+        public void SulfurasUpdater(Item item)
+        {
+
+        }
+
+        public void DefaultItemUpdater(Item item)
+        {
+
+            if (item.Quality > 0)
+            {
+                item.Quality = item.Quality - 1;
+            }
+
+            item.SellIn = item.SellIn - 1;
+
+            if (item.SellIn < 0)
+            {
+                if (item.Quality > 0)
+                {
+                    item.Quality = item.Quality - 1;
+                }
+            }
+
+
         }
     }
 }
