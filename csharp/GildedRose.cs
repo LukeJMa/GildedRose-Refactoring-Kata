@@ -38,9 +38,38 @@ namespace csharp
 
                     default:
                     {
-                        DefaultItemUpdater(item);
+                        if (item.Name.StartsWith("Conjured"))
+                            ConjuredItemUpdater(item);
+                        else
+                            DefaultItemUpdater(item);
                         break;
                     }
+                }
+            }
+        }
+
+        private void ConjuredItemUpdater(Item item)
+        {
+            if (item.Quality > 1)
+            {
+                item.Quality = item.Quality - 2;
+            }
+            else if (item.Quality == 1)
+            {
+                item.Quality = item.Quality - 1;
+            }
+
+            item.SellIn = item.SellIn - 1;
+
+            if (item.SellIn < 0)
+            {
+                if (item.Quality > 1)
+                {
+                    item.Quality = item.Quality - 2;
+                }
+                else if (item.Quality == 1)
+                {
+                    item.Quality = item.Quality - 1;
                 }
             }
         }
