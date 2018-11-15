@@ -8,6 +8,7 @@ namespace csharp
     public class GildedRose
     {
         IList<Item> Items;
+        private const int MaxQuality = 50;
 
         public GildedRose(IList<Item> items)
         {
@@ -86,39 +87,31 @@ namespace csharp
 
         public void AgedBrieQualityUpdater(Item item)
         {
-            if (item.Quality < 50)
+            if (item.Quality < MaxQuality)
             {
                 item.Quality = item.Quality + 1;
-
-
             }
             
-            if (item.SellIn < 0 && item.Quality < 50)
+            if (item.SellIn < 0 && item.Quality < MaxQuality)
             {
-
                 item.Quality = item.Quality + 1;
-
             }
-
-
         }
 
         public void BackstagePassQualityUpdater(Item item)
         {
-            if (item.Quality < 50)
+            if (item.Quality < MaxQuality)
             {
                 item.Quality = item.Quality + 1;
 
-                if (item.SellIn < 10 && item.Quality < 50)
+                if (item.SellIn < 10 && item.Quality < MaxQuality)
                 {
                     item.Quality = item.Quality + 1;
-
                 }
 
-                if (item.SellIn < 5 && item.Quality < 50)
+                if (item.SellIn < 5 && item.Quality < MaxQuality)
                 {
                     item.Quality = item.Quality + 1;
-
                 }
             }
             
@@ -131,7 +124,7 @@ namespace csharp
 
         public void SulfurasUpdater(Item item)
         {
-
+            // Intentionally blank. Sulfuras does not change.
         }
 
         public void DefaultItemQualityUpdater(Item item)
@@ -151,7 +144,7 @@ namespace csharp
                 }
             }
 
-
         }
+
     }
 }
