@@ -9,6 +9,7 @@ namespace csharp
         [TestCase("Test Vest")]
         [TestCase("Aged Brie")]
         [TestCase("Backstage passes to a TAFKAL80ETC concert")]
+        [TestCase("Conjured Mana Cake")]
         public void SellInOf_NonLegendaryItems_DecreasesBy1(string name)
         {
             IList<Item> Items = new List<Item>
