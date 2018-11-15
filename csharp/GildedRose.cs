@@ -7,14 +7,12 @@ namespace csharp
 {
     public class GildedRose
     {
-        IList<Item> Items;
+        public IList<Item> Items {  get; }
         private const int MaxQuality = 50;
 
         public GildedRose(IList<Item> items)
         {
-            var copy = new List<Item>();
-            copy = copy.Concat(items).ToList();
-            Items = copy;
+            Items = items;
         }
 
         public void UpdateStock()
@@ -117,7 +115,7 @@ namespace csharp
             
             if (item.SellIn < 0)
             {
-                item.Quality = item.Quality - item.Quality;
+                item.Quality = 0;
             }
 
         }
