@@ -49,7 +49,7 @@ namespace csharp
                     System.Console.Write(Items[j]+"\n");
                 }
                 Console.Write("\n");
-                app.UpdateQuality();
+                app.UpdateStock();
             }
 
             Console.ReadLine();

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace csharp
@@ -7,12 +9,14 @@ namespace csharp
     {
         IList<Item> Items;
 
-        public GildedRose(IList<Item> Items)
+        public GildedRose(IList<Item> items)
         {
-            this.Items = Items;
+            var copy = new List<Item>();
+            copy = copy.Concat(items).ToList();
+            Items = copy;
         }
 
-        public void UpdateQuality()
+        public void UpdateStock()
         {
             foreach (var item in Items)
             {
@@ -26,29 +30,37 @@ namespace csharp
 
                     case "Aged Brie":
                     {
-                        AgedBrieUpdater(item);
+                        SellInUpdater(item);
+                        AgedBrieQualityUpdater(item);
                         break;
                     }
 
                     case "Backstage passes to a TAFKAL80ETC concert":
                     {
-                        BackstagePassUpdater(item);
+                        SellInUpdater(item);
+                        BackstagePassQualityUpdater(item);
                         break;
                     }
 
                     default:
                     {
+                        SellInUpdater(item);
                         if (item.Name.StartsWith("Conjured"))
-                            ConjuredItemUpdater(item);
+                            ConjuredItemQualityUpdater(item);
                         else
-                            DefaultItemUpdater(item);
+                            DefaultItemQualityUpdater(item);
                         break;
                     }
                 }
             }
         }
 
-        private void ConjuredItemUpdater(Item item)
+        private void SellInUpdater(Item item)
+        {
+            item.SellIn = item.SellIn - 1;
+        }
+
+        private void ConjuredItemQualityUpdater(Item item)
         {
             if (item.Quality > 1)
             {
@@ -58,9 +70,7 @@ namespace csharp
             {
                 item.Quality = item.Quality - 1;
             }
-
-            item.SellIn = item.SellIn - 1;
-
+            
             if (item.SellIn < 0)
             {
                 if (item.Quality > 1)
@@ -74,7 +84,7 @@ namespace csharp
             }
         }
 
-        public void AgedBrieUpdater(Item item)
+        public void AgedBrieQualityUpdater(Item item)
         {
             if (item.Quality < 50)
             {
@@ -82,9 +92,7 @@ namespace csharp
 
 
             }
-
-            item.SellIn = item.SellIn - 1;
-
+            
             if (item.SellIn < 0 && item.Quality < 50)
             {
 
@@ -95,27 +103,25 @@ namespace csharp
 
         }
 
-        public void BackstagePassUpdater(Item item)
+        public void BackstagePassQualityUpdater(Item item)
         {
             if (item.Quality < 50)
             {
                 item.Quality = item.Quality + 1;
 
-                if (item.SellIn < 11 && item.Quality < 50)
+                if (item.SellIn < 10 && item.Quality < 50)
                 {
                     item.Quality = item.Quality + 1;
 
                 }
 
-                if (item.SellIn < 6 && item.Quality < 50)
+                if (item.SellIn < 5 && item.Quality < 50)
                 {
                     item.Quality = item.Quality + 1;
 
                 }
             }
-
-            item.SellIn = item.SellIn - 1;
-
+            
             if (item.SellIn < 0)
             {
                 item.Quality = item.Quality - item.Quality;
@@ -128,7 +134,7 @@ namespace csharp
 
         }
 
-        public void DefaultItemUpdater(Item item)
+        public void DefaultItemQualityUpdater(Item item)
         {
 
             if (item.Quality > 0)
@@ -136,7 +142,6 @@ namespace csharp
                 item.Quality = item.Quality - 1;
             }
 
-            item.SellIn = item.SellIn - 1;
 
             if (item.SellIn < 0)
             {

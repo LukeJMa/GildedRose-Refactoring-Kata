@@ -17,7 +17,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(80, Items[0].Quality);
                 Assert.AreEqual(80, Items[0].Quality);
                 Assert.AreEqual(80, Items[0].Quality);
@@ -33,7 +33,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(3 - daysPassed, Items[0].Quality);
             }
         }
@@ -46,7 +46,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(10 -2* daysPassed, Items[0].Quality);
             }
         }
@@ -60,7 +60,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(0, Items[0].Quality);
             }
         }
@@ -73,7 +73,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(3+daysPassed, Items[0].Quality);
             }
         }
@@ -86,7 +86,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(10 + 2*daysPassed, Items[0].Quality);
             }
         }
@@ -104,7 +104,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(50, Items[0].Quality);
                 Assert.AreEqual(50, Items[1].Quality);
             }
@@ -118,7 +118,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(3 + daysPassed, Items[0].Quality);
             }
         }
@@ -131,7 +131,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(3 + 2*daysPassed, Items[0].Quality);
             }
         }
@@ -144,7 +144,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(3 + 3 * daysPassed, Items[0].Quality);
             }
         }
@@ -163,7 +163,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(50, Items[0].Quality);
                 Assert.AreEqual(50, Items[1].Quality);
             }
@@ -181,7 +181,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(0, Items[0].Quality);
             }
         }
@@ -194,7 +194,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(20 -2* daysPassed, Items[0].Quality);
             }
         }
@@ -207,7 +207,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(20 - 4* daysPassed, Items[0].Quality);
             }
         }
@@ -221,7 +221,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(0, Items[0].Quality);
             }
         }

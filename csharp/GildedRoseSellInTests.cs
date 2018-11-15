@@ -19,7 +19,7 @@ namespace csharp
 
             for (var daysPassed = 1; daysPassed <= 3; daysPassed++)
             {
-                app.UpdateQuality();
+                app.UpdateStock();
                 Assert.AreEqual(5 - daysPassed, Items[0].SellIn);
                 Assert.AreEqual(2 - daysPassed, Items[1].SellIn);
                 Assert.AreEqual(1 - daysPassed, Items[2].SellIn);
